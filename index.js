@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import generateSafetyTips from './GeminiService.js';
+import generateSafetyTips from './geminiService.js';
 
 dotenv.config();
 const app = express();
