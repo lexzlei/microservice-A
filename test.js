@@ -10,8 +10,8 @@ async function testMicroservice() {
         },
         body: JSON.stringify({
             location: 'New York',
-            startDate: '2023-10-01',
-            endDate: '2023-10-10',
+            startDate: '2025-08-01',
+            endDate: '2025-08-10',
             numberOfTravelers: 2
         })
     });
