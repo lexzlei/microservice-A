@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { generateSafetyTips } from './geminiService.js'; 
+import generateSafetyTips from './GeminiService.js'; 
 
 dotenv.config();
 const app = express();
@@ -12,6 +12,7 @@ app.use(express.json());
 app.post('/safety-tips', async (req, res) => { 
     try {
         const { location, startDate, endDate, numberOfTravelers } = req.body;
+        const timestamp = new Date().toISOString();
         if (!location) {
             return res.status(400).json({ error: 'Location is required' });
         }
@@ -21,8 +22,8 @@ app.post('/safety-tips', async (req, res) => {
         if (!numberOfTravelers || numberOfTravelers <= 0) {
             return res.status(400).json({ error: 'Number of travelers must be a positive integer' });
         }
-        const tips = await generateSafetyTips({ location, startDate, endDate, numberOfTravelers });
-        res.json({ tips });
+        const tips = await generateSafetyTips({ location, startDate, endDate, numberOfTravelers, timestamp });
+        res.json(tips);
     } catch (error) {
         console.error('Error generating safety tips:', error);
         res.status(500).json({ error: 'Failed to generate safety tips' });
