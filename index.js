@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/safety-tips', async (req, res) => { 
+    console.log("Received request for safety tips:", req.body);
     try {
         const { location, startDate, endDate, numberOfTravelers } = req.body;
         const timestamp = new Date().toISOString();
